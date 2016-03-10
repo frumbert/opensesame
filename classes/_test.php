@@ -2,12 +2,11 @@
 
 require_once (__DIR__ . "/encryption.php");
 
-$ENCRYPTION_KEY = 'HFE$%^&y54jyrngdb*IKMNB67u5yjtnfgVFE$%^U';
-$HMAC_SALT = '87654ESDXCVuju7y65$ErdfguhijknjbHVGFTR%$rt';
+$ENCRYPTION_KEY = 'HFErdfguhidb*IKMNB$%^&y54jyrngSDXCVuju7y65$E67u5yjtnfgVFE$%^U';
+$HMAC_SALT = '87654E5$E67u5yjtnfgVjknjbHVGFTR%$rt';
 
 $rawdata = http_build_query(array(
     "auth_id" => 155,                                   // mdl_users.id of the user you want to log in as
-    "homeurl" => "http://elgoog.com/",          // the url to go back to when you exit an activity,
     "activity" => 1,                                        // the 1-based index of the activity to open (typically 1)
 ));
 
@@ -23,7 +22,7 @@ $enclib = new OpenSesame_Encryption($ENCRYPTION_KEY, $HMAC_SALT);
 $data = bin2hex($enclib->encrypt($rawdata)); // more querystring-safe than base64
 
 // the url of the opensesame endpoint in moodle
-$url = "http://cliniciansacademy.avide.server.dev/auth/opensesame/login.php?data=$data";
+$url = "http://your.moodle.server.dev/auth/opensesame/login.php?data=$data";
 
 echo "<p><a href='$url' target='_blank'>Log on with OpenSesame</a></p>";
 
