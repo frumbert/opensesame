@@ -1,12 +1,28 @@
 opensesame
-=================
+==========
 
 logs a user on then opens the course they are enrolled for.
 
-passed in two possible parameters:
+only takes a single parameter
 
 - data = the bin2hex() output of the encrypted version of the user id, which you're expected to know (e.g. you set up the user via a webservice)
-- activity = the integer of the nth activity to open, defaults to 1 if not passed in
+
+but inside the encrypted string is a querystring, which contains:
+- auth_id = the mdl_users.id value of the user you want to log in as
+- activity = the 1-based index of the activity you want to open, starting with the first one on section 0 and counting down.
+
+Installation:
+-------------
+Drop this in at `~/auth/opensesame` in your moodle installation and do the notifications thing to install it.
+
+Configuration:
+--------------
+You need to configure the encryption and hmac keys. Just bash random keys for a few seconds, throwing in some numbers and symbols, maybe 50 to 100 charracters for each. Match these with whatever endpoint is encrypting the data of course.
+for production, remove the file at `~/auth/opensesame/classes/_test.php`.
+
+Demo:
+-----
+look at the file in `~/auth/opensesame/classes/_test.php` - you'll have to edit it to put in its required parameters. You typically run this from another domain, but it will work internally too.
 
 Usage:
 ------
