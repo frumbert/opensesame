@@ -1,0 +1,65 @@
+<?php
+    global $OUTPUT;
+    // set to defaults if undefined
+
+    if (!isset($config->encryptionkey)) {
+        $config->encryptionkey = 'this is not a secure key, change it';
+    }
+
+    if (!isset($config->hmacsalt)) {
+        $config->hmacsalt = 'this is not a secure salt, change it';
+    }
+
+    if (!isset($config->logoffurl)) {
+        $config->logoffurl = '';
+    }
+
+?>
+<table cellspacing="0" cellpadding="5" border="0">
+
+<tr valign="top" class="required">
+    <td align="right"><label for="encryptionkey"><?php print_string("auth_opensesame_encryptionkey", "auth_opensesame") ?></label></td>
+    <td>
+        <input id="encryptionkey" name="encryptionkey" type="text" size="30" value="<?php echo $config->encryptionkey?>" />
+        <?php
+
+        if (isset($err["encryptionkey"])) {
+            echo $OUTPUT->error_text($err["encryptionkey"]);
+        }
+
+        ?>
+    </td>
+    <td><?php print_string("auth_opensesame_encryptionkey_desc", "auth_opensesame") ?></td>
+</tr>
+
+<tr valign="top" class="required">
+    <td align="right"><label for="hmacsalt"><?php print_string("auth_opensesame_hmacsalt", "auth_opensesame") ?></label></td>
+    <td>
+        <input id="hmacsalt" name="hmacsalt" type="text" size="30" value="<?php echo $config->hmacsalt?>" />
+        <?php
+
+        if (isset($err["hmacsalt"])) {
+            echo $OUTPUT->error_text($err["hmacsalt"]);
+        }
+
+        ?>
+    </td>
+    <td><?php print_string("auth_opensesame_hmacsalt_desc", "auth_opensesame") ?></td>
+</tr>
+
+<tr valign="top" class="">
+    <td align="right"><label for="logoffurl"><?php print_string("auth_opensesame_logoffurl", "auth_opensesame") ?></label></td>
+    <td>
+        <input id="logoffurl" name="logoffurl" type="text" size="30" value="<?php echo $config->logoffurl?>" />
+        <?php
+
+        if (isset($err["logoffurl"])) {
+            echo $OUTPUT->error_text($err["logoffurl"]);
+        }
+
+        ?>
+    </td>
+    <td><?php print_string("auth_opensesame_logoffurl_desc", "auth_opensesame") ?></td>
+</tr>
+
+</table>
