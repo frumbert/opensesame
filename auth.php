@@ -56,7 +56,7 @@ class auth_plugin_opensesame extends auth_plugin_base {
      * @return bool
      */
     function is_internal() {
-        return false;
+        return true;
     }
 
     /**

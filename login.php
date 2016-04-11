@@ -62,6 +62,15 @@ if ($DB->record_exists('user', array('id'=>$auth_id))) { // update manually crea
 		$course = array_pop($course);
 		$courseId = $course->courseid;
 
+		// ensure completion record records timestarted
+		require_once($CFG->dirroot.'/completion/completion_completion.php');
+		$cc = array(
+		    'course'    => $courseId,
+		    'userid'    => $auth_id
+		);
+		$ccompletion = new completion_completion($cc);
+		$ccompletion->mark_inprogress(); // no param should set it to time()
+
 		if ($courseId > 0) {
 			$SESSION->wantsurl = new moodle_url('/course/view.php', array('id'=>$courseId));
 		}
